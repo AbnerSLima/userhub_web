@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import userHubLogo1 from '/logo1.png'
+import { useNavigate, Link } from "react-router-dom";
 import './App.css'
 
 function App() {
+  const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Aqui você pode adicionar a lógica para autenticação
     alert(`Login\nEmail: ${email}\nSenha: ${password}`);
     navigate("/home");
   };
@@ -16,9 +17,9 @@ function App() {
   return (
     <>
       <div>
-        <a target="_blank">
-          <img src={userHubLogo1} className="logo" alt="Vite logo" />
-        </a>
+        <Link target="_blank">
+          <img src={userHubLogo1} className="logo" alt="UserHub logo" />
+        </Link>
       </div>
       <h1 className="title">Bem-vindo</h1>
       <div className="card">
