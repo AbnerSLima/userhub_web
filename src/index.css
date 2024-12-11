@@ -21,6 +21,10 @@ body {
   min-height: 100vh;
 }
 
+p, td {
+  color: #000;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
