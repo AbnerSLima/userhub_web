@@ -1,10 +1,23 @@
-/* Home.css */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
 
 .container {
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
   padding: 20px;
   height: 100vh;
+  width: 100%;
 }
 
 .header {
@@ -47,11 +60,24 @@
 }
 
 .input {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  align-items: center;
   border: 2px solid #49688d;
   border-radius: 25px;
   padding: 10px;
-  margin-right: 10px;
+  height: 30px;
+  width: 300px;
+  margin: 4px;
+  background-color: #fff;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
 }
 
 .search-button,
@@ -67,6 +93,10 @@
 .search-clean {
   background-color: #f44336;
   margin-left: 10px;
+}
+
+p, td {
+  color: #000;
 }
 
 .user-table {

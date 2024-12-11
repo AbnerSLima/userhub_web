@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import userHubLogo1 from '/logo1.png'
 import { BrowserRouter as Route, useNavigate, Link, Router, Routes } from "react-router-dom";
+import "./login.css";
 
 function Login() {
   const navigate = useNavigate();
