@@ -39,12 +39,10 @@ function Login() {
           <button className="button" onClick={handleLogin}>
             Entrar
           </button>
-          <a>
-            <p className="link">Esqueci minha senha</p>
-          </a>
-          <a>
-            <p className="link">Ainda não tem conta? Cadastre-se!</p>
-          </a>
+            <p>Ainda não tem conta?</p>
+          <Link>
+            <p className="link">Cadastre-se!</p>
+          </Link>
         </div>
     </>
   )

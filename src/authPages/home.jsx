@@ -6,8 +6,7 @@ function Home() {
   const navigate = useNavigate();
 
   const usuarios = [
-    { user_id: 1, nome: "João", login: "joao123", senha: "12345", data_cadastro: "2024-11-01" },
-    { user_id: 2, nome: "Maria", login: "maria123", senha: "12345", data_cadastro: "2024-11-02" },
+    { user_id: 1, nome: "João", login: "joao123", senha: "12345", data_cadastro: "2024-11-01" }
   ];
 
   const handleCreate = () => {
@@ -38,7 +37,7 @@ function Home() {
         </div>
         <div className="user-actions">
           <p>Olá Visitante!</p>
-          <Link to="/login" className="logoff-link">
+          <Link onClick={handleLogoff} className="link">
             Sair
           </Link>
           <button onClick={handleCreate} className="add-button">

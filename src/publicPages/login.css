@@ -7,6 +7,19 @@ body {
   min-height: 100vh;
 }
 
+.logo {
+  height: 150px;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #ff9900);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #eeff06d2);
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -23,6 +36,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.link {
+  margin-top: 10px;
+  color: #ff0000;
+  text-decoration:none;
+  margin-bottom: 10px;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #cc0000;
 }
 
 @media (prefers-color-scheme: light) {

@@ -38,10 +38,16 @@ h1 {
   align-items: flex-end;
 }
 
-.logoff-link {
-  color: #f44336;
-  text-decoration: none;
+.link {
+  margin-top: 10px;
+  color: #ff0000;
+  text-decoration:none;
   margin-bottom: 10px;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #cc0000;
 }
 
 .add-button {

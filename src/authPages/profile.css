@@ -1,0 +1,84 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo .user-logo {
+  height: 80px;
+  width: 80px;
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-actions p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.logoff-link {
+  color: #f44336;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.back-button {
+  margin-top: 10px;
+  background-color: #cc1100;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #213a59;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #49688d;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.edit-button {
+  width: 100%;
+  height: 40px;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
