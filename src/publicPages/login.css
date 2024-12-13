@@ -8,10 +8,11 @@ body {
 }
 
 .logo {
-  height: 150px;
-  padding: 1.5em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
+  width: 40%;
+  height: 40%;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #ff9900);
@@ -25,29 +26,20 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  font-weight: 500;
-  font-family: inherit;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 .link {
   margin-top: 10px;
   color: #ff0000;
   text-decoration:none;
   margin-bottom: 10px;
+  background-color: transparent;
+  border: none;
 }
-
 .link:hover {
   text-decoration: underline;
   color: #cc0000;
+  background-color: transparent;
+  border: none;
+  border-color: transparent;
 }
 
 @media (prefers-color-scheme: light) {

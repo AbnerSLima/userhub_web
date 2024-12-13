@@ -19,17 +19,21 @@ function Create() {
   };
 
   return (
-    <div className="register-container">
+    <div className="container">
       <header className="header">
-        <div className="logo">
-          <img src="/assets/images/logo2.png" alt="Logo" className="user-logo" />
+      <div className="logo">
+          <img src="/logo2.png" alt="Logo" className="user-logo" />
         </div>
         <div className="user-actions">
-          <p>Olá Visitante!</p>
-          <Link to="/login" className="logoff-link">
+          <div className="text-welcome">
+            <p>Olá</p><p>Visitante!</p>
+          </div>
+          <Link 
+            to="/"
+            className="link">
             Sair
           </Link>
-          <button onClick={homePage} className="back-button">
+          <button onClick={homePage} className="button back-button">
             Voltar
           </button>
         </div>
@@ -57,7 +61,7 @@ function Create() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleCreate} className="save-button">
+        <button onClick={handleCreate} className="button save-button">
           Salvar
         </button>
       </main>

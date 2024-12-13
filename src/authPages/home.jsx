@@ -25,10 +25,6 @@ function Home() {
     console.log(`Excluir usuário ID: ${id}`);
   };
 
-  const handleLogoff = () => {
-    navigate("/login");
-  };
-
   return (
     <div className="container">
       <header className="header">
@@ -36,8 +32,12 @@ function Home() {
           <img src="/logo2.png" alt="Logo" className="user-logo" />
         </div>
         <div className="user-actions">
-          <p>Olá Visitante!</p>
-          <Link onClick={handleLogoff} className="link">
+          <div className="text-welcome">
+            <p>Olá</p><p>Visitante!</p>
+          </div>
+          <Link 
+            to="/"
+            className="link">
             Sair
           </Link>
           <button onClick={handleCreate} className="add-button">

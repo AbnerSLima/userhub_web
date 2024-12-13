@@ -13,26 +13,29 @@ function Login() {
     navigate("/Home");
   };
 
+  const handleRegister = () => {
+    navigate("/Register");
+  };
+
   return (
     <>
-        <div>
-          <Link target="_blank">
+      <div className='card'>
+          <Link>
             <img src={userHubLogo1} className="logo" alt="UserHub logo" />
           </Link>
-        </div>
         <h1 className="title">Bem-vindo</h1>
         <div className="card">
           <input
             type='email'
-            placeholder="Digite seu e-mail..."
             className="input"
+            placeholder="Digite seu e-mail..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
           <input
             type="password"
-            placeholder="Digite sua senha..."
             className="input"
+            placeholder="Digite sua senha..."
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
@@ -40,10 +43,11 @@ function Login() {
             Entrar
           </button>
             <p>Ainda não tem conta?</p>
-          <Link>
-            <p className="link">Cadastre-se!</p>
-          </Link>
+          <button onClick={handleRegister} className="link">
+            Cadastre-se!
+          </button>
         </div>
+      </div>
     </>
   )
 }

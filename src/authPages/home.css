@@ -13,18 +13,21 @@ h1 {
 }
 
 .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
   padding: 20px;
   height: 100vh;
   width: 100%;
+  border-radius: 20px;
 }
 
-.header {
+.text-welcome{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .logo .user-logo {
@@ -55,7 +58,7 @@ h1 {
   color: #fff;
   border: none;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
@@ -65,19 +68,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.input {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: center;
-  border: 2px solid #49688d;
-  border-radius: 25px;
-  padding: 10px;
-  height: 30px;
-  width: 300px;
-  margin: 4px;
-  background-color: #fff;
-}
+
 
 .card {
   display: flex;
@@ -109,6 +100,7 @@ p, td {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  border-radius: 10px;
 }
 
 .user-table th,
@@ -126,7 +118,7 @@ p, td {
 .action-button {
   margin: 0 5px;
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 25px;
   border: none;
   color: #fff;
   cursor: pointer;

@@ -8,6 +8,14 @@
   color: #888;
 }
 
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+}
+
 .title {
   font-size: 28px;
   margin-bottom: 20px;
@@ -23,6 +31,20 @@
   margin-bottom: 20px;
 }
 
+.input {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  border: 2px solid #49688d;
+  border-radius: 25px;
+  padding: 10px;
+  height: 20px;
+  width: 300px;
+  margin: 4px;
+  background-color: #fff;
+}
+
 .button {
   width: 250px;
   padding: 10px;
@@ -33,8 +55,42 @@
   font-size: 16px;
   cursor: pointer;
   margin-top: 12px;
+  font-weight: 500;
+  font-family: inherit;
 }
-
 .button:hover {
   background-color: #333;
+}
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button.back-button {
+  background-color: #cc1100;
+  width: 150px;
+}
+.button.back-button:hover {
+  background-color: #a80e00;
+}
+
+.button.edit-button {
+  background-color: #ffc107;
+}
+.button.edit-button:hover {
+  background-color: #e2aa00;
+}
+
+.button.save-button {
+  background-color: #08b802;
+}
+.button.save-button:hover {
+  background-color: #068f01;
+}
+
+.button.alter-button {
+  background-color: #fc9c0c;
+}
+.button.alter-button:hover {
+  background-color: #cf7c00;
 }

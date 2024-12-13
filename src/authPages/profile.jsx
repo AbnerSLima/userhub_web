@@ -23,17 +23,19 @@ function Profile() {
   };
 
   return (
-    <div className="register-container">
+    <div className="container">
       <header className="header">
         <div className="logo">
-          <img src="/assets/images/logo2.png" alt="Logo" className="user-logo" />
+          <img src="/logo2.png" alt="Logo" className="user-logo" />
         </div>
         <div className="user-actions">
-          <p>Olá Visitante!</p>
+          <div className="text-welcome">
+            <p>Olá</p><p>Visitante!</p>
+          </div>
           <Link to="/login" className="logoff-link">
             Sair
           </Link>
-          <button onClick={homePage} className="back-button">
+          <button onClick={homePage} className="button back-button">
             Voltar
           </button>
         </div>
@@ -61,7 +63,7 @@ function Profile() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleEdit} className="edit-button">
+        <button onClick={handleEdit} className="button edit-button">
           Editar
         </button>
       </main>
