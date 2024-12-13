@@ -11,14 +11,22 @@ body {
   padding: 1em;
   will-change: filter;
   transition: filter 300ms;
-  width: 40%;
-  height: 40%;
+  width: 30%;
+  height: 30%;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #ff9900);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #eeff06d2);
+
+.logo_header {
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+  width: 40%;
+  height: 40%;
+}
+.logo_header:hover {
+  filter: drop-shadow(0 0 2em #ff9900);
 }
 
 h1 {

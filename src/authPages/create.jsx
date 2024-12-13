@@ -21,8 +21,8 @@ function Create() {
   return (
     <div className="container">
       <header className="header">
-      <div className="logo">
-          <img src="/logo2.png" alt="Logo" className="user-logo" />
+      <div>
+          <img src="/logo2.png" alt="Logo" className="logo_header" />
         </div>
         <div className="user-actions">
           <div className="text-welcome">
@@ -49,7 +49,7 @@ function Create() {
         />
         <input
           type="email"
-          placeholder="Digite seu e-mail..."
+          placeholder="Digite seu login..."
           className="input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

@@ -28,8 +28,8 @@ function Home() {
   return (
     <div className="container">
       <header className="header">
-        <div className="logo">
-          <img src="/logo2.png" alt="Logo" className="user-logo" />
+        <div>
+          <img src="/logo2.png" alt="Logo" className="logo_header" />
         </div>
         <div className="user-actions">
           <div className="text-welcome">
@@ -49,7 +49,7 @@ function Home() {
       <div className="search-container">
         <input
           type="text"
-          placeholder="Digite o nome ou email"
+          placeholder="Digite o nome ou login"
           className="input"
         />
         <button className="search-button">Buscar</button>

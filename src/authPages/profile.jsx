@@ -25,8 +25,8 @@ function Profile() {
   return (
     <div className="container">
       <header className="header">
-        <div className="logo">
-          <img src="/logo2.png" alt="Logo" className="user-logo" />
+        <div>
+          <img src="/logo2.png" alt="Logo" className="logo_header" />
         </div>
         <div className="user-actions">
           <div className="text-welcome">
@@ -44,21 +44,21 @@ function Profile() {
         <h1 className="title">Dados do usuário</h1>
         <input
           type="text"
-          placeholder="Digite seu primeiro nome..."
+          placeholder="Seu nome..."
           className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="email"
-          placeholder="Digite seu e-mail..."
+          placeholder="Seu login..."
           className="input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Digite sua senha..."
+          placeholder="Sua senha..."
           className="input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
