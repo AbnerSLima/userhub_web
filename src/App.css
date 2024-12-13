@@ -13,7 +13,6 @@
   justify-content: space-around;
   width: 100%;
   align-items: center;
-  padding: 10px;
 }
 
 .title {
@@ -36,7 +35,8 @@
   flex-direction: column;
   flex: 1;
   align-items: center;
-  border: 2px solid #49688d;
+  border: 2px solid #1c4577;
+  color: #000;
   border-radius: 25px;
   padding: 10px;
   height: 20px;

@@ -3,24 +3,24 @@ import { Link } from "react-router-dom";
 import userHubLogo1 from '/logo1.png'
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [nome, setNome] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
 
   async function handleSignUp() {
-    if (!name || !email || !password) {
+    if (!nome || !login || !senha) {
       alert('Erro: Todos os campos são obrigatórios!');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:8081/register', {
+      const response = await fetch('https://savir11.tecnologia.ws/userhub/create.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          nome: name,
-          login: email,
-          senha: password,
+          nome: nome,
+          login: login,
+          senha: senha,
         }),
       });
 
@@ -28,9 +28,9 @@ function Register() {
 
       if (response.ok) {
         alert('Sucesso: Conta criada com sucesso!');
-        // Redirecionar para a tela de login
+        //navigate("/Login");
       } else {
-        alert(`Erro: ${data.message || 'Não foi possível criar a conta.'}`);
+        alert(`Erro: ${data.error || 'Não foi possível criar a conta.'}`);
       }
     } catch (error) {
       console.error(error);
@@ -48,22 +48,22 @@ function Register() {
         type="text"
         placeholder="Digite seu nome..."
         className="input"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
       />
       <input
-        type="email"
+        type="text"
         placeholder="Digite seu usuário..."
         className="input"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={login}
+        onChange={(e) => setLogin(e.target.value)}
       />
       <input
         type="password"
         placeholder="Digite sua senha..."
         className="input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
       />
       <button 
         className="button"

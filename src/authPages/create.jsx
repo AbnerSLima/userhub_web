@@ -49,7 +49,7 @@ function Create() {
         />
         <input
           type="email"
-          placeholder="Digite seu login..."
+          placeholder="Digite seu usuário..."
           className="input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

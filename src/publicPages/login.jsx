@@ -6,11 +6,35 @@ import "./login.css";
 function Login() {
   const navigate = useNavigate();
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const handleLogin = () => {
-    navigate("/Home");
+  const handleLogin = async () => {
+    if (!login || !senha) {
+      alert("Erro: Todos os campos são obrigatórios!");
+      return;
+    }
+  
+    try {
+      const response = await fetch('https://savir11.tecnologia.ws/userhub/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login: login, senha: senha, }),
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  ;
+      if (data.success) {
+        alert("Sucesso: Login realizado!");
+        navigate("/Home");
+      } else {
+        alert(`Erro: ${data.error || 'Usuário ou senha inválidos.'}`);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Erro: Algo deu errado. Tente novamente mais tarde.");
+    }
   };
 
   const handleRegister = () => {
@@ -26,18 +50,18 @@ function Login() {
         <h1 className="title">Bem-vindo</h1>
         <div className="card">
           <input
-            type='email'
+            type="text"
             className="input"
-            placeholder="Digite seu e-mail..."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Digite seu usuário..."
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
             />
           <input
             type="password"
             className="input"
             placeholder="Digite sua senha..."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
             />
           <button className="button" onClick={handleLogin}>
             Entrar

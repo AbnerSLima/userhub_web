@@ -1,16 +1,19 @@
 <?php
-require 'config/db.php';
+require 'conexao.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
-$id = $data['id'];
+$id = $data['user_id'];
 $name = $data['name'];
-$email = $data['email'];
+$login = $data['login'];
+$password = $data['senha'];
 
-if ($id && $name && $email) {
-    $stmt = $pdo->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
-    $stmt->execute([':id' => $id, ':name' => $name, ':email' => $email]);
+if ($id && $nome && $login && $password) {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare("UPDATE users SET nome = :nome, login = :login WHERE user_id = :id");
+    $stmt->execute([':id' => $id, ':nome' => $nome, ':login' => $login, ':senha' => $hashedPassword]);
     echo json_encode(["message" => "Usuário atualizado com sucesso!"]);
 } else {
+    http_response_code(400);
     echo json_encode(["error" => "Dados incompletos"]);
 }
 ?>

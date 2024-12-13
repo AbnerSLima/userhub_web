@@ -51,7 +51,7 @@ function Profile() {
         />
         <input
           type="email"
-          placeholder="Seu login..."
+          placeholder="Seu usuário..."
           className="input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

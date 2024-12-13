@@ -19,7 +19,6 @@ h1 {
   font-family: Arial, sans-serif;
   background-color: #f7f7f7;
   padding: 20px;
-  height: 100vh;
   width: 100%;
   border-radius: 20px;
 }
@@ -166,4 +165,31 @@ p, td {
 .action-button.delete:hover {
   background-color: #b41b10;
   border: 1px solid #b41b10;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

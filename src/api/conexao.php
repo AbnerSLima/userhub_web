@@ -6,16 +6,17 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 header("Content-Type: application/json");
 
-$host = '127.0.0.1';
-$dbname = 'DB_UserWeb';
-$username = 'root';
-$password = '';
+$host = 'bd_abnerthiago.mysql.dbaas.com.br';
+$dbname = 'bd_abnerthiago';
+$username = 'bd_abnerthiago';
+$password = 'Py9Qlp03#';
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo json_encode(["error" => "Erro na conexão: " . $e->getMessage()]);
+    http_response_code(500);
+    echo json_encode(["error" => "Erro na conexão com o banco de dados"]);
     exit;
 }
 ?>
