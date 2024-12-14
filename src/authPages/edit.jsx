@@ -77,21 +77,21 @@ function Edit() {
         <h1 className="title">Editar usuário</h1>
         <input
           type="text"
-          placeholder="Digite seu primeiro nome..."
+          placeholder="Carregando..."
           className="input"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
         />
         <input
-          type="email"
-          placeholder="Digite seu login..."
+          type="text"
+          placeholder="Carregando..."
           className="input"
           value={login}
           onChange={(e) => setLogin(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Digite sua senha..."
+          placeholder="Digite sua nova senha..."
           className="input"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
