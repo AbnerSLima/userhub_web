@@ -4,7 +4,6 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Max-Age: 3600");
 header('Content-Type: application/json');
-echo json_encode(['success' => true]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -23,12 +22,14 @@ if ($login && $senha) {
         $stmt = $conn->prepare("SELECT * FROM users WHERE login = :login");
         $stmt->bindParam(':login', $login, PDO::PARAM_STR);
         $stmt->execute();
+
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($senha, $user['senha'])) {
             echo json_encode([
-                "message" => "Login realizado com sucesso!",
-                "user_id" => $user['user_id']
+                "success" => true,
+                "user_id" => $user['user_id'],
+                "nome" => $user['nome']
             ]);
         } else {
             http_response_code(401);

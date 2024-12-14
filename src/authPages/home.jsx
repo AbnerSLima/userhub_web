@@ -7,8 +7,14 @@ function Home() {
   const [usuarios, setUsuarios] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [nomeUsuario, setnomeUsuario] = useState("");
 
   useEffect(() => {
+    const nome = localStorage.getItem("nomeUsuario");
+    if (nome) {
+      setNome(nome);
+    }
+
     const fetchUsuarios = async () => {
       try {
         setIsLoading(true);
@@ -40,8 +46,32 @@ function Home() {
     navigate(`/edit/${id}`);
   };
 
-  const handleExcluir = (id) => {
-    console.log(`Excluir usuário ID: ${id}`);
+  const handleExcluir = async (id, nome) => {
+    const confirmDelete = window.confirm(`Você tem certeza que deseja excluir o usuário ${nome}?`);
+    
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      const response = await fetch("https://savir11.tecnologia.ws/userhub/delete.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify({ user_id: id }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        setUsuarios(usuarios.filter((usuario) => usuario.user_id !== id));
+        alert(data.message);
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Erro ao excluir usuário:", error);
+      alert("Ocorreu um erro ao tentar excluir o usuário.");
+    }
   };
 
   const handleLimparFiltro = () => {
@@ -62,7 +92,7 @@ function Home() {
         </div>
         <div className="user-actions">
           <div className="text-welcome">
-            <p>Olá</p><p>Visitante!</p>
+            <p>Olá</p><p>{nomeUsuario || "Visitante!"}</p>
           </div>
           <Link 
             to="/"
@@ -115,7 +145,7 @@ function Home() {
                 <button className="action-button edit" onClick={() => handleEditar(usuario.user_id)}>
                   Editar
                 </button>
-                <button className="action-button delete" onClick={() => handleExcluir(usuario.user_id)}>
+                <button className="action-button delete" onClick={() => handleExcluir(usuario.user_id, usuario.nome)}>
                   Excluir
                 </button>
               </td>
