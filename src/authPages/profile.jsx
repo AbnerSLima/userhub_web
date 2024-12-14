@@ -1,25 +1,41 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams  } from "react-router-dom";
 import "./profile.css";
 
 function Profile() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`https://savir11.tecnologia.ws/userhub/read.php?id=${id}`);
+        if (response.ok) {
+          const user = await response.json();
+          setUserData(user);
+        } else {
+          alert("Usuário não encontrado!");
+          
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+        alert("Erro ao carregar os dados do usuário.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [id]);
 
   const homePage = () => {
     navigate("/home");
   };
 
   const handleEdit = () => {
-    navigate("/edit");
-  };
-
-  const handleCreate = async () => {
-    console.log("Criando usuário...");
-    // Adicione a lógica para criar um usuário aqui
+    navigate(`/edit/${id}`);
   };
 
   return (
@@ -42,27 +58,20 @@ function Profile() {
       </header>
       <main className="form-container">
         <h1 className="title">Dados do usuário</h1>
-        <input
-          type="text"
-          placeholder="Seu nome..."
-          className="input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Seu usuário..."
-          className="input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Sua senha..."
-          className="input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="user-details">
+          {isLoading ? (
+            <div className="loading-container">
+            <div className="spinner"></div>
+          </div>
+          ) : (
+            <>
+              <div><strong>ID:</strong> {userData.user_id}</div>
+              <div><strong>Nome:</strong> {userData.nome}</div>
+              <div><strong>Login:</strong> {userData.login}</div>
+              <div><strong>Criado em:</strong> {new Date(userData.created_at).toLocaleDateString()}</div>
+            </>
+          )}
+        </div>
         <button onClick={handleEdit} className="button edit-button">
           Editar
         </button>

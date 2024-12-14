@@ -11,8 +11,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require 'conexao.php';
 
-$stmt = $pdo->query("SELECT * FROM users");
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
-echo json_encode($users);
+if ($id) {
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id");
+    $stmt->execute([':user_id' => $id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        echo json_encode($user);
+    } else {
+        http_response_code(404);
+        echo json_encode(["error" => "Usuário não encontrado."]);
+    }
+} else {
+    $stmt = $pdo->query("SELECT user_id, nome, login, created_at FROM users");
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($users);
+}
 ?>

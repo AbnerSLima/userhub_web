@@ -32,12 +32,12 @@ function Home() {
     navigate("/create");
   };
 
-  const handleProfile = () => {
-    navigate("/profile");
+  const handleProfile = (id) => {
+    navigate(`/profile/${id}`);
   };
 
-  const handleEditar = () => {
-    navigate("/edit");
+  const handleEditar = (id) => {
+    navigate(`/edit/${id}`);
   };
 
   const handleExcluir = (id) => {
@@ -109,10 +109,10 @@ function Home() {
               <td>{usuario.login}</td>
               <td>{usuario.created_at}</td>
               <td>
-                <button className="action-button view" onClick={handleProfile}>
+                <button className="action-button view" onClick={() => handleProfile(usuario.user_id)}>
                   Visualizar
                 </button>
-                <button className="action-button edit" onClick={handleEditar}>
+                <button className="action-button edit" onClick={() => handleEditar(usuario.user_id)}>
                   Editar
                 </button>
                 <button className="action-button delete" onClick={() => handleExcluir(usuario.user_id)}>

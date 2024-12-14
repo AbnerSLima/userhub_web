@@ -5,17 +5,42 @@ import { Link, useNavigate } from "react-router-dom";
 function Create() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [nome, setNome] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
 
   const homePage = () => {
     navigate("/home");
   };
 
   const handleCreate = async () => {
-    console.log("Criando usuário...");
-    // Adicione a lógica para criar usuário
+    if (!nome || !login || !senha) {
+      alert("Todos os campos são obrigatórios!");
+      return;
+    }
+  
+    try {
+      const response = await fetch("https://savir11.tecnologia.ws/userhub/create.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify({ nome, login, senha }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message || "Usuário criado com sucesso!");
+        setNome("");
+        setLogin("");
+        setSenha("");
+        //navigate("/home");
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || "Erro ao criar usuário.");
+      }
+    } catch (error) {
+      console.error("Erro na criação do usuário:", error);
+      alert("Erro ao criar usuário. Tente novamente mais tarde.");
+    }
   };
 
   return (
@@ -44,22 +69,22 @@ function Create() {
           type="text"
           placeholder="Digite seu primeiro nome..."
           className="input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
         <input
           type="email"
           placeholder="Digite seu usuário..."
           className="input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <input
           type="password"
           placeholder="Digite sua senha..."
           className="input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
         />
         <button onClick={handleCreate} className="button save-button">
           Salvar

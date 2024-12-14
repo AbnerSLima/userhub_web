@@ -1,23 +1,58 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./edit.css";
 
 function Edit() {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [nome, setNome] = useState("");
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
+
+  useEffect(() => {
+    const fetchUsuario = async () => {
+      try {
+        const response = await fetch(`https://savir11.tecnologia.ws/userhub/readById.php?id=${id}`);
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar usuário: ${response.status}`);
+        }
+        const data = await response.json();
+        setNome(data.nome);
+        setLogin(data.login);
+      } catch (error) {
+        console.error("Erro ao carregar os dados do usuário:", error);
+      }
+    };
+
+    fetchUsuario();
+  }, [id]);
+  
+  const handleSave = async () => {
+    console.log("Editando usuário...");
+    try {
+      const response = await fetch("https://savir11.tecnologia.ws/userhub/update.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify({ user_id: id, nome, login, senha, }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao atualizar usuário");
+      }
+
+      const data = await response.json();
+      console.log("Usuário atualizado com sucesso:", data.message);
+      navigate("/home");
+    } catch (error) {
+      console.error("Erro ao salvar alterações:", error);
+    }
+  };
 
   const homePage = () => {
     navigate("/home");
   };
-
-  const handleSave = async () => {
-    console.log("Editando usuário...");
-    // Adicione a lógica para alterar os usuário
-  };
-
+  
   return (
     <div className="container">
       <header className="header">
@@ -44,22 +79,22 @@ function Edit() {
           type="text"
           placeholder="Digite seu primeiro nome..."
           className="input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
         <input
           type="email"
           placeholder="Digite seu login..."
           className="input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <input
           type="password"
           placeholder="Digite sua senha..."
           className="input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
         />
         <button onClick={handleSave} className="button alter-button">
           Alterar
