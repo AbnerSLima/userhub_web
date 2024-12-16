@@ -19,24 +19,32 @@ function Login() {
       const response = await fetch('https://savir11.tecnologia.ws/userhub/login.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ login: login, senha: senha, }),
+        body: JSON.stringify({ login, senha }),
       });
+  
+      if (!response.ok) {
+        const errorMessage = await response.text(); 
+        console.error(`Erro no servidor: ${errorMessage}`);
+        throw new Error(`Erro no servidor (${response.status}): ${errorMessage}`);
+      }
   
       const data = await response.json();
       console.log(data);
-  ;
+  
       if (data.success) {
         alert("Sucesso: Login realizado!");
+        localStorage.setItem("nomeUsuario", data.nome);
+        localStorage.setItem("user_id", data.user_id);
         navigate("/Home");
       } else {
         alert(`Erro: ${data.error || 'Usuário ou senha inválidos.'}`);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Erro inesperado:", error);
       alert("Erro: Algo deu errado. Tente novamente mais tarde.");
     }
   };
-
+  
   const handleRegister = () => {
     navigate("/Register");
   };

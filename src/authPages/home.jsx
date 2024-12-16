@@ -9,11 +9,20 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [nomeUsuario, setnomeUsuario] = useState("");
 
+  const handleLogout = () => {
+    localStorage.removeItem("nomeUsuario");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("token");
+    navigate("/");
+  }; 
+
   useEffect(() => {
     const nome = localStorage.getItem("nomeUsuario");
-    if (nome) {
-      setNome(nome);
+    if (!nome) {
+      navigate("/");
+    return;
     }
+    setnomeUsuario(nome);
 
     const fetchUsuarios = async () => {
       try {
@@ -92,13 +101,13 @@ function Home() {
         </div>
         <div className="user-actions">
           <div className="text-welcome">
-            <p>Olá</p><p>{nomeUsuario || "Visitante!"}</p>
+            <p>Olá</p><p>{nomeUsuario || "Visitante"}!</p>
           </div>
-          <Link 
-            to="/"
-            className="link">
+          <button 
+            className="link"
+            onClick={handleLogout}>
             Sair
-          </Link>
+          </button>
           <button onClick={handleCreate} className="add-button">
             Adicionar Usuário
           </button>
