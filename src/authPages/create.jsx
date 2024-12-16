@@ -18,6 +18,7 @@ function Create() {
         navigate("/");
       return;
     }
+    setnomeUsuario(nome);
   }, [navigate]);
 
   const [nome, setNome] = useState("");
