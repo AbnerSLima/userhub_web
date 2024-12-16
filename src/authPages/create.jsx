@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 
 function Create() {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("nomeUsuario");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  useEffect(() => {
+      const nome = localStorage.getItem("nomeUsuario");
+      if (!nome) {
+        navigate("/");
+      return;
+    }
+  }, [navigate]);
+
   const [nome, setNome] = useState("");
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
+  const [nomeUsuario, setnomeUsuario] = useState("");
 
   const homePage = () => {
     navigate("/home");
@@ -51,13 +67,13 @@ function Create() {
         </div>
         <div className="user-actions">
           <div className="text-welcome">
-            <p>Olá</p><p>Visitante!</p>
+            <p>Olá</p><p>{nomeUsuario || "Visitante"}!</p>
           </div>
-          <Link 
-            to="/"
-            className="link">
+          <button 
+            className="link"
+            onClick={handleLogout}>
             Sair
-          </Link>
+          </button>
           <button onClick={homePage} className="button back-button">
             Voltar
           </button>

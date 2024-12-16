@@ -7,8 +7,23 @@ function Profile() {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [nomeUsuario, setnomeUsuario] = useState("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("nomeUsuario");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   useEffect(() => {
+    const nome = localStorage.getItem("nomeUsuario");
+    if (!nome) {
+      navigate("/");
+    return;
+    }
+    setnomeUsuario(nome);
+
     const fetchUser = async () => {
       try {
         const response = await fetch(`https://savir11.tecnologia.ws/userhub/read.php?id=${id}`);
@@ -46,11 +61,13 @@ function Profile() {
         </div>
         <div className="user-actions">
           <div className="text-welcome">
-            <p>Olá</p><p>Visitante!</p>
+            <p>Olá</p><p>{nomeUsuario || "Visitante"}!</p>
           </div>
-          <Link to="/login" className="logoff-link">
+          <button 
+            className="link"
+            onClick={handleLogout}>
             Sair
-          </Link>
+          </button>
           <button onClick={homePage} className="button back-button">
             Voltar
           </button>

@@ -53,6 +53,7 @@ function Home() {
 
   const handleEditar = (id) => {
     navigate(`/edit/${id}`);
+
   };
 
   const handleExcluir = async (id, nome) => {

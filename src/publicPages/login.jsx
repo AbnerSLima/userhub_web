@@ -32,7 +32,6 @@ function Login() {
       console.log(data);
   
       if (data.success) {
-        alert("Sucesso: Login realizado!");
         localStorage.setItem("nomeUsuario", data.nome);
         localStorage.setItem("user_id", data.user_id);
         navigate("/Home");
@@ -47,6 +46,12 @@ function Login() {
   
   const handleRegister = () => {
     navigate("/Register");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
   };
 
   return (
@@ -70,6 +75,7 @@ function Login() {
             placeholder="Digite sua senha..."
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
+            onKeyDown={handleKeyDown}
             />
           <button className="button" onClick={handleLogin}>
             Entrar
